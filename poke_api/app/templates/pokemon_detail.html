@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %} Pokémons{% endblock title %}
+
+{% block content %}
+       
+<!-- {{response}} -->
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h3 style="color:blue;" class="card-title">{{response.name|title}}</h3>
+    <h5 style="color:green;" class="card-text">Height:</h5><p>{{response.height}}</p>
+
+<h4 style="color:green;" >Ability: </h4>
+
+    {%for ability in response.abilities %}
+
+
+		<ul>
+		<li>{{ability.ability.name|capfirst}}</li>
+		</ul>
+
+	{%endfor%}
+
+<h4 style="color:green;">Type: </h4>
+
+	{%for type in response.types %}
+
+		<ul>
+		<li>{{type.type.name|capfirst}}</li>
+		</ul>
+
+	{%endfor%}
+	
+  </div>
+</div>
+
+
+{% endblock content %}

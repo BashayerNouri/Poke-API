@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %} List of Pokémons{% endblock title %}
+
+{% block content %}
+        
+<!-- {{responses}} Have count, name, url, previous and next -->
+
+<h3 style="color:red; padding:10px;">Total: {{responses.count}} Pokémons</h3>
+
+{% for response in responses.results %}
+
+    <div class="card">
+      <h5 style="color:blue;" class="card-header">Pokemon Name</h5>
+      <div class="card-body">
+        <h5 class="card-title">{{response.name|title}}</h5>
+
+    <form action="{% url 'pokemon-detail' %}">
+        <input type="hidden" name="detail" value="{{response.url}}">
+        <button class="btn btn-success" type="submit">Read More...</button>
+    </form>
+
+      </div>
+    </div>
+<br>
+{%endfor%}
+
+
+{% if responses.previous != None %}
+		
+<div id="one">
+    <div id="two"> 
+
+    <form action="{% url 'pokemon-list' %}">
+        <input type="hidden" value="{{responses.previous}}" name='next'>
+        <button class="btn btn-primary" type='submit'>Previous Page</button>
+    </form>
+</div>
+
+{% else %}
+<div id="one">
+    <div id="two"> 
+
+    <button class="btn btn-primary" type="button" disabled>Previous Page</button>
+    </div>
+</div>
+{% endif %}
+<div id="one">
+    <div id="two"> 
+    <form action="{% url 'pokemon-list' %}">
+    <input type="hidden" value="{{responses.next}}" name='next'>
+    <button class="btn btn-primary" type='submit'>Next Page</button>
+    </form>
+
+    </div>
+</div>
+
+{% endblock content %}
