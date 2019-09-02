@@ -32,7 +32,7 @@
     <div id="two"> 
 
     <form action="{% url 'pokemon-list' %}">
-        <input type="hidden" value="{{responses.previous}}" name='next'>
+        <input type="hidden" value="{{responses.previous}}" name='pre'>
         <button class="btn btn-primary" type='submit'>Previous Page</button>
     </form>
 </div>
@@ -48,7 +48,7 @@
 <div id="one">
     <div id="two"> 
     <form action="{% url 'pokemon-list' %}">
-    <input type="hidden" value="{{responses.next}}" name='next'>
+    <input type="hidden" value="{{responses.next}}" name='nxt'>
     <button class="btn btn-primary" type='submit'>Next Page</button>
     </form>
 

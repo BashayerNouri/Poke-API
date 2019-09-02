@@ -20,9 +20,16 @@ import requests
 
 def pokemon_list(request):
 	url = "https://pokeapi.co/api/v2/pokemon/"
-	if request.GET:
-		url = request.GET.get('next')
-	response = requests.get(url).json()
+	pre = request.GET.get('pre')
+	nxt = request.GET.get('nxt')
+
+	if nxt:
+		response = requests.get(nxt).json()
+	elif pre: 
+		response = requests.get(pre).json()
+	else:
+		response = requests.get(url).json()
+		
 	context = {
 	"responses": response,
 	}
